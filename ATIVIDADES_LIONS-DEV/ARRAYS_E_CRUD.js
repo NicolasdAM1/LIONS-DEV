@@ -7,7 +7,7 @@
 //indexof verifica em qual índice está o objeto
 //lenght verifica o tamanho do array
 
-//CRUD --> Create, Read, Update and Delete
+//CRUD --> Create, Read, Update and Delete 
 
  /*const minhaMesa = ['Nicolas', 'Otávio', 'Luan', 'Lucas'];
  console.log(`Meu nome é ${minhaMesa[0]} e meus colegas são ${minhaMesa.slice(1,4)}`)
