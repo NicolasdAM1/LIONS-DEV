@@ -1,6 +1,6 @@
 const { Console } = require("console");
 const readline = require("readline");
-const randomnumber = Math.floor(Math.random() * 21);
+const randomnumber = (Math.floor(Math.random() * 100) + 100);
 var rodadas = 0;
 var limite = 5;
 
