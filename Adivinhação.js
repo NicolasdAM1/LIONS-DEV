@@ -17,7 +17,7 @@ const rl = readline.createInterface({
 rl.prompt() -
   rl.on("line", (input) => {
     if (input == 100) {
-      console.log("Obrigado por jogar.\nSaindo...");
+      console.log("Obrigado por jogar.\nSaindo....");
       process.exit();
     }
     if (input == randomnumber) {
