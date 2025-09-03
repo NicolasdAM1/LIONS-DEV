@@ -31,22 +31,19 @@ app.get('/estudantes',(req, res) => {
 
 
 app.put('/estudante/:matricula', (req, res) => {
-    const { matricula } = req.params; // Get the matricula from the URL parameter
+    const { matricula } = req.params;
     const { nome, curso, ano } = req.body;
     
-    // Validate that all required fields for a PUT request are present
     if (!nome || !curso || !ano) {
         return res.status(400).json({ mensagem: 'PUT requires all student data (nome, curso, ano).' });
     }
     
-    // Find the student by matricula
     const index = corpoDiscente.findIndex(estudante => estudante.matricula === matricula);
     
     if (index === -1) {
         return res.status(404).json({ mensagem: 'Estudante não encontrado.' });
     }
     
-    // Replace the entire object with the new data
     corpoDiscente[index] = { matricula, nome, curso, ano };
     
     res.status(200).json(corpoDiscente[index]);
