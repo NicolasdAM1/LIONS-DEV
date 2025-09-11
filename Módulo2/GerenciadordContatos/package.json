@@ -1,0 +1,23 @@
+{
+  "name": "gerenciadordcontatos",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NicolasdAM1/GerenciadordContatos.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NicolasdAM1/GerenciadordContatos/issues"
+  },
+  "homepage": "https://github.com/NicolasdAM1/GerenciadordContatos#readme",
+  "dependencies": {
+    "prompt-sync": "^4.2.0"
+  }
+} 
