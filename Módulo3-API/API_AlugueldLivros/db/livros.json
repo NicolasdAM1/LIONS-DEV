@@ -1,1 +1,9 @@
-[]
+[
+  {
+    "id": 1758209481777,
+    "title": "Livro 1",
+    "author": "Autor 1",
+    "year": 1001,
+    "genre": "Gênero 1"
+  }
+]
