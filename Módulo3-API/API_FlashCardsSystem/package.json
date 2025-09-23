@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "express": "^5.1.0",
+    "nodemon": "^3.1.10"
+  },
+  "name": "api_flashcardssystem",
+  "version": "1.0.0",
+  "main": "main.js",
+  "devDependencies": {},
+  "scripts": {
+    "start:dev": "nodemon main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
