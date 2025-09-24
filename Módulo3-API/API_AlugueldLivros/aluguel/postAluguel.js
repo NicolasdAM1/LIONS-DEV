@@ -1,4 +1,4 @@
-const { lerAluguel, salvarAluguel } = require('../utils.js')
+const { LerAluguel, SalvarAluguel } = require('../utils.js')
 
 function postAluguel(req, res){
     const { idLivro, idAluno } = req.body
@@ -6,7 +6,7 @@ function postAluguel(req, res){
         return res.status(400).send('Dados incompleto. Preencha todos os campos necessários.')
     }
 
-    const locadora = lerAluguel();
+    const locadora = LerAluguel();
     
     const aluguel = {
         id: Date.now(),
@@ -18,6 +18,6 @@ function postAluguel(req, res){
 
     res.status(201).send('Aluguel criado.');
     locadora.push(aluguel);
-    salvarAluguel(locadora);
+    SalvarAluguel(locadora);
 }
 module.exports = { postAluguel }

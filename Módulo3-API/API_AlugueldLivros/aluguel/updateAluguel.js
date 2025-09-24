@@ -1,5 +1,7 @@
+const { LerAluguel, SalvarAluguel } = require('../utils.js')
 
 function updateAluguel(req, res){
+    const locadora = LerAluguel();
     const { id } = req.params;
     const { dataDevolver } = req.body;
 
