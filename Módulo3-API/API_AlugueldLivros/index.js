@@ -30,4 +30,4 @@ const start = async() => {
 
 start();
 
-console.log(new Date());
+console.log(new Date);

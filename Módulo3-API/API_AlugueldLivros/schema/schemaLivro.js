@@ -17,10 +17,11 @@ const schemaLivro = new mongoose.Schema(
             type: String,
             required: true,
         },
-    }
+    },
 )
 
-
+const Livro = mongoose.model('livros',schemaLivro);
+module.exports = Livro;
 
 
 

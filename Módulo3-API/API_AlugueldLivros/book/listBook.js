@@ -1,11 +1,13 @@
-const { LerLivro } = require("../utils.js")
+const Livro = require("../schema/schemaLivro")
 
-function listBook(req, res ){
+async function listBook(req, res ){
 
-    const biblioteca = LerLivro();
-    if(biblioteca.length <= 0){
-        res.status(400).send('A biblioteca está vazia.')
+    const Biblioteca = await Livro.find()
+
+    if(!Biblioteca){
+        return res.status(400).send("Biblioteca vazia. Nenhum livro a ser listado.")
     }
-    res.status(201).send(biblioteca)
+
+    res.status(200).send({Biblioteca})
 }
 module.exports = { listBook }

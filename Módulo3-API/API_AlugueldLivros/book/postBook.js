@@ -1,22 +1,20 @@
-const { LerLivro, SalvarLivro } = require("../utils.js");
+const Livro = require("../schema/schemaLivro.js");
 
-function postBook(req, res){
-    const { title, author, year, genre } = req.body
-    if(!title || !author || !year || !genre){
+async function postBook(req, res){
+    const { Title, Author, Year, Genre } = req.body
+    if(!Title || !Author || !Year || !Genre){
         res.status(400).send("Dados incompletos. Insira todos os campos necessários.");
     }
-    const biblioteca = LerLivro()
-    const book = {
-        id: Date.now(),
-        title,
-        author,
-        year: parseInt(year),
-        genre,
-    };
 
-    res.status(201).send("Livro adicionado à biblioteca.");
-    biblioteca.push(book)
-    SalvarLivro(biblioteca);
+    const book = new Livro({
+        Title,
+        Author,
+        Year,
+        Genre,
+    });
+
+    const SaveLivro = await book.save();
+    res.status(201).send("Livro adicionado à biblioteca.",SaveLivro);   
     
 }
-module.exports = { postBook };
+module.exports = { postBook }; 

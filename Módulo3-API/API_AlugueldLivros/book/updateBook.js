@@ -1,35 +1,34 @@
-const { LerLivro, SalvarLivro } = require("../utils.js");
+const Livro = require("../schema/schemaLivro");
 
-function updateBook(req, res){
+
+async function updateBook(req, res){
     
-    const biblioteca = LerLivro();
-    if(biblioteca.length <= 0){
-        res.status(400).send('A biblioteca está vazia.')
+    const Biblioteca = await Livro.find()
+    if(!Biblioteca){
+        return res.status(400).send("Biblioteca vazia. Nenhum livro a ser atualizado.")
     }
 
-    const id = Number(req.params.id)
-    const { title, author, year, genre } = req.body
+    const id = (req.params.id)
+    const { Title, Author, Year, Genre } = req.body
 
     const newBook = {
-        id: id,
-        title,
-        author,
-        year: parseInt(year),
-        genre,
+        Title,
+        Author,
+        Year,
+        Genre,
     };
 
-    if(!title || !author || !year || !genre){
+    if(!Title || !Author || !Year || !Genre){
         return res.status(400).send('Dados incompletos. PUT necessita de todos os dados');
     }
 
-    const index = biblioteca.findIndex(book => book.id === id);
+    const index = Biblioteca.findIndex(book => book.id === id);
 
     if(index == -1){
         return res.status(404).json({mensagem: 'Livro não encontrado' });
     }
 
-    biblioteca[index] = newBook;
-    SalvarLivro(biblioteca);
+    Biblioteca[index] = newBook;
     res.status(200).json(newBook);
 }
 module.exports = { updateBook }
