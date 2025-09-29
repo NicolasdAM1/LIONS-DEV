@@ -1,8 +1,11 @@
-const { LerAluguel } = require("../utils.js")
+const Aluguel = require("../schema/schemaAluguel.js");
 
-function listAluguel(req, res){
-    const locadora = LerAluguel();
-    if(locadora.length <= 0){
+
+async function listAluguel(req, res){
+
+    const locadora = await Aluguel.find();
+
+    if(!locadora){
         return res.status(400).send('Nenhum aluguel em andamento');
     }
 

@@ -1,17 +1,21 @@
-const { LerAluguel, SalvarAluguel } = require('../utils.js')
+const Aluguel = require("../schema/schemaAluguel.js");
 
-function removeAluguel(req, res){
-    const locadora = LerAluguel()
-    const { id } = req.params;
-    const index = locadora.findIndex(aluguel => aluguel.id === parseInt(id));
 
-    if (index == -1) {
-        return res.status(404).send('Aluguel não encontrado.');
+async function removeAluguel(req, res){
+
+    try{
+        const id = req.params.id
+
+        const locadora = Aluguel.find()
+        if(!locadora){
+            return res.status(400).send('Aluguel não encontrado.')
+        }
+        const deletarAluguel = await locadora.findByIdAndDelete(id);
+        res.status(200).send('Aluguel removido do banco de dados.',deletarAluguel)
+
+    } catch(error){
+        console.error(`Não foi possível deletar o aluguel.`,error)
     }
-
-    locadora.splice(index, 1);
-    SalvarAluguel(locadora);
-    res.status(201).send('Livro removido');
 
 }
 module.exports = { removeAluguel }

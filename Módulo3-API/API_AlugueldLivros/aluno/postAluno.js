@@ -1,21 +1,21 @@
-const { LerEstudante, SalvarEstudante } = require("../utils.js");
+const Aluno = require("../schema/schemaAluno.js");
 
-function postAluno(req, res){
+
+async function postAluno(req, res){
     const { Matricula, Nome, Curso, Ano } = req.body
     if(!Matricula || !Nome || !Curso || !Ano){
         res.status(400).send("Dados incompletos. Insira todos os campos necessários.");
     }
-    const corpoDiscente = LerEstudante()
-    const aluno = {
+
+    const aluno = new Aluno({
         Matricula,
         Nome,
         Curso,
-        Ano: parseInt(Ano),
-    };
+        Ano,
+    });
 
-    res.status(201).send("Aluno adicionado ao corpo discente.");
-    corpoDiscente.push(aluno)
-    SalvarEstudante(corpoDiscente);
+    const SaveAluno = await aluno.save();
+    res.status(201).send("Aluno adicionado ao corpo discente.",SaveAluno);
     
 }
 module.exports = { postAluno };

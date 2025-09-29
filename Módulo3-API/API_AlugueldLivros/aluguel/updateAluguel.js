@@ -1,17 +1,18 @@
-const { LerAluguel, SalvarAluguel } = require('../utils.js')
+const Aluguel = require("../schema/schemaAluguel.js");
 
-function updateAluguel(req, res){
-    const locadora = LerAluguel();
-    const { id } = req.params;
-    const { dataDevolver } = req.body;
 
-    const aluguel = locadora.find(a => a.id === parseInt(id));
-
-    if(!aluguel){
-        return res.status(401).send('Nenhum aluguel com esse ID encontrado')
+async function updateAluguel(req, res){
+    const id = req.params.id
+    const newAluguel = req.body;
+    const novoAluguel = await Aluguel.findByIdAndUpdate(id,newAluguel,{
+        new: true,
+        runValidators: true,
+    });
+    if(!novoAluguel){
+        return res.status(400).send('Aluguel não encontrado.');
     }
 
-    aluguel.dataDevolver = dataDevolver || aluguel.dataDevolver;
-    res.json(aluguel)
+    res.status(200).json(novoAluguel)
+
 }
 module.exports = { updateAluguel }

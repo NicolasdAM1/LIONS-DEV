@@ -19,3 +19,6 @@ const schemaAluno = new mongoose.Schema(
         },
     }
 )
+
+const Aluno = mongoose.model('estudantes',schemaAluno);
+module.exports = Aluno;

@@ -1,20 +1,19 @@
-const { LerEstudante, SalvarEstudante } = require("../utils.js");
+const Aluno = require("../schema/schemaAluno.js");
 
-function removeAluno(req, res){
-    const matricula = Number(req.params.matricula)
-    const corpoDiscente = LerEstudante();
-    if(corpoDiscente.length <= 0){
-        res.status(400).send('O corpo discente está vazio.')
+async function removeAluno(req, res){
+
+    try{
+        const id = req.params.id
+
+        const corpoDiscente = Aluno.find()
+        if(!corpoDiscente){
+            return res.status(400).send('Aluno não encontrado.')
+        }
+        const deletarAluno = await corpoDiscente.findByIdAndDelete(id);
+        res.status(200).send('Aluno removido do corpo discente',deletarAluno)
+
+    } catch(error){
+        console.error(`Não foi possível remover o aluno do corpo discente.`,error)
     }
-
-    const index = corpoDiscente.findIndex(aluno => aluno.matricula === matricula);
-
-    if(index == -1){
-        return res.status(404).json({mensagem: 'Aluno não encontrado' });
-    }
-
-    corpoDiscente.splice(index,1);
-    SalvarEstudante(corpoDiscente);
-    res.status(200).send('Aluno removido do corpo discente.');
 }
 module.exports = { removeAluno }

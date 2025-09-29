@@ -1,4 +1,4 @@
-const Livro = require("../schema/schemaLivro")
+const Livro = require("../schema/schemaLivro.js")
 
 async function listBook(req, res ){
 

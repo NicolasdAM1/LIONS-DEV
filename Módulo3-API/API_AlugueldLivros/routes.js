@@ -21,8 +21,8 @@ router.delete('/livro/:id',removeBook)
 
 router.post('/estudante',postAluno)
 router.get('/estudantes',listAluno)
-router.put('/estudante/:matricula',updateAluno)
-router.delete('/estudante/:matricula',removeAluno)
+router.put('/estudante/:id',updateAluno)
+router.delete('/estudante/:id',removeAluno)
 
 router.post('/aluguel',postAluguel)
 router.get('/alugueis',listAluguel)
