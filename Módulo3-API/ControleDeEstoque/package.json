@@ -4,5 +4,14 @@
     "express": "^5.1.0",
     "mongoose": "^8.18.3",
     "nodemon": "^3.1.10"
-  }
+  },
+  "name": "controledeestoque",
+  "version": "1.0.0",
+  "main": "main.js",
+  "scripts": {
+    "start": "nodemon main.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
 }

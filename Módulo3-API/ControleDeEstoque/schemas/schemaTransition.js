@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
 
-const schemaMovements = new mongoose.Schema(
+const schemaTransitions = new mongoose.Schema(
     {
         productID: {
             type: String,
@@ -20,5 +20,5 @@ const schemaMovements = new mongoose.Schema(
         },
     }
 )
-const Movement = mongoose.model('Movements',schemaMovements);
+const Movement = mongoose.model('Movements',schemaTransitions);
 module.exports = Movement;

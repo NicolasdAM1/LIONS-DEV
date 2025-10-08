@@ -1,4 +1,4 @@
-require('.dotenv').config()
+require('dotenv').config()
 const express = require('express');
 const app = express();
 const port = process.env.port;
@@ -10,7 +10,7 @@ const initializing = async() => {
         await mongoose.connect(process.env.database);
         console.log('Connecting to databank...');
 
-        mongoose.connections.on('error',(err) => {
+        mongoose.connection.on('error',(err) => {
             console.log('Something went wrong trying to connect to databank.')
         })
 
@@ -21,7 +21,7 @@ const initializing = async() => {
             console.log(`Example app listening at http://localhost:${port}`);
         });
 
-    } catch (error) {
+    } catch (err) {
         console.error(`Error trying to connect to MongoDB.\nError: ${err.message}`);
         process.exit(1);
     }
