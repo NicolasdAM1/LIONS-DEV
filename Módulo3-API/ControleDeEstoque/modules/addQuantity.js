@@ -1,8 +1,7 @@
 const Product = require('../schemas/schemaProduct.js');
 const Transaction = require('../schemas/schemaTransition.js');
 
-async function addQuantity(req, res){
-    
+async function addQuantity(req, res) {
     const { productID, quantity, type } = req.body;
 
     if (!productID || !quantity || typeof quantity !== 'number' || !type)
@@ -23,14 +22,18 @@ async function addQuantity(req, res){
         if (!updatedProduct)
             return res.status(404).send('Produto não encontrado.');
 
-        await Transaction.create({
+        const savedTransaction = await Transaction.create({
             productID,
             type,
             quantity,
             date: new Date(),
         });
 
-        return res.status(200).send({ message: 'Quantidade atualizada e transação registrada.', product: updatedProduct });
+        return res.status(200).json({
+            message: 'Quantidade atualizada e transação registrada.',
+            product: updatedProduct,
+            transaction: savedTransaction
+        });
 
     } catch (error) {
         console.error(error);
