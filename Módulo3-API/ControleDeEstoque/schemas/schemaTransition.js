@@ -6,19 +6,19 @@ const schemaTransitions = new mongoose.Schema(
             type: String,
             required: true,
         },
-        Type: {
+        type: {
             type: String,
             required: true,
         },
-        Quantity: {
+        quantity: {
             type: Number,
             required: true,
         },
-        Date: {
+        date: {
             type: Date,
             default: Date.now,
         },
     }
 )
-const Movement = mongoose.model('Movements',schemaTransitions);
-module.exports = Movement;
+const Transition = mongoose.model('Transitions',schemaTransitions);
+module.exports = Transition;
