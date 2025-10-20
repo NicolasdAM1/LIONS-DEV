@@ -16,7 +16,7 @@ const petSchema = new mongoose.Schema(
         Status: {
             type: String,
             required: true,
-            enum: ["disponível"]
+            enum: ["disponível", "em andamento"]
         },
     },
 )
