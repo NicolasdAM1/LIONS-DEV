@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
 export const SchemaRegister = new mongoose.Schema({
     Nome: {
         type: String,

@@ -1,3 +1,3 @@
-function HelloUser (req, res) {
-    res.json({ message: `Bem-vindo! Seu ID é ${req.user.userId}` });
+export function HelloUser (req, res) {
+    res.json({ message: `Bem-vindo(a)! Teu ID é ${req.user.userId}` });
   };

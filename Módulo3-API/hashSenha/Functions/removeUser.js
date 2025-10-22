@@ -1,6 +1,6 @@
-const bcrypt = require('bcrypt');
-const mongoose = require('mongoose');
-import { RegisterUserMGS } from "../Schemas/SchemaRegister";
+import bcrypt from 'bcrypt';
+import mongoose from 'mongoose';
+import { RegisterUserMGS } from "../Schemas/SchemaRegister.js";
 
 export async function RemoveUser(req, res) {
     try {

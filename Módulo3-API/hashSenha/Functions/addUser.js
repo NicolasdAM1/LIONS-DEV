@@ -1,8 +1,8 @@
-const bcrypt = require('bcrypt')
-import { RegisterUserMGS } from ('../Schemas/SchemaRegister')
+import bcrypt from 'bcrypt'
+import { RegisterUserMGS } from '../Schemas/SchemaRegister.js'
 
 
-async function AddUser(req,res) {
+export async function AddUser(req,res) {
     try{
     const Dados = req.body
     const HashSenha = await bcrypt.hash(Dados.Senha, 12)
@@ -18,5 +18,3 @@ async function AddUser(req,res) {
         return res.status(500).send("Erro interno. Aguarde e tente novamente.");
     }
 }
-
-module.exports = {AddUser}
