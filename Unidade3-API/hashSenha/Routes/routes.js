@@ -10,3 +10,4 @@ route.post('/login', loginUser)
 route.post('/register', AddUser)
 route.get('/profile', authMiddleware, HelloUser)
 route.get('/admin', authMiddleware(Role.ADMIN), HelloUser)
+
