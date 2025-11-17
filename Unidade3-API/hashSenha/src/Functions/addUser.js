@@ -1,5 +1,5 @@
 import bcrypt from 'bcrypt'
-import { RegisterUserMGS } from '../Schemas/SchemaRegister.js'
+import { RegisterUserMGS } from '../src/Schemas/SchemaRegister.js'
 
 
 export async function AddUser(req,res) {

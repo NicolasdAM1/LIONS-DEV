@@ -1,4 +1,4 @@
-import { RegisterUserMGS } from "../Schemas/SchemaRegister.js"
+import { RegisterUserMGS } from "../src/Schemas/SchemaRegister.js"
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcrypt';
 
