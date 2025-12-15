@@ -19,7 +19,7 @@ export async function loginUser(req, res){
     res.json({ message: 'Login realizado com sucesso!', token });
   } catch (error) {
     console.log(error)
-    return res.status(500).send("deu merda")
+    return res.status(500).send("Não foi possível realizar login.")
   }
   
 }
