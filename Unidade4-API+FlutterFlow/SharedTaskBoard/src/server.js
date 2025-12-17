@@ -3,14 +3,38 @@ dotenv.config();
 
 import express from 'express';
 import mongoose from 'mongoose';
+import { route } from './Routes/routes.js';
 
+const app = express();
+const port = process.env.PORT || 3000;
 
-const port = process.env.PORT;
+app.use(express.json());
+app.use(route);
 
 const inicializing = async() => {
     try {
-        await mongoose.connect()
-    } catch (error) {
+        mongoose.connection.on('error', (err) => {
+            console.error(`Unsuccessfully connecting MongoDB: ${err.message}`);
+        })
+        await mongoose.connect(process.env.DBC);
+        console.log('Successfully connected at MongoDB.');
         
+
+        app.listen(port, () => {
+            console.log(`Servidor iniciado na porta ${port}`)
+        })
+    } catch (err) {
+        console.error("Error trying to connect MongoDB.")
+        console.error(err.message);
+        process.exit(1);
     }
 }
+
+//inicializing();
+
+const init = async() => {
+    app.listen(port, () => {
+        console.log(`Servidor iniciado na porta ${port}`)
+        })
+}
+init();
