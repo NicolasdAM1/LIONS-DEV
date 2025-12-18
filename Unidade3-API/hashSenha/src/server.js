@@ -5,7 +5,7 @@ import app from './app.js';
 
 import express from "express";
 import mongoose from "mongoose";
-import { route } from "./Routes/user.routes.js";
+import { route } from "./routes/user.routes.js";
 
 const app = express();
 const port = process.env.PORT;
