@@ -12,4 +12,4 @@ export const authMiddleware = (req, res, next) => {
     } catch (err) {
         res.status(401).json({ error: "Token is not valid." });
     }
-}
+} 

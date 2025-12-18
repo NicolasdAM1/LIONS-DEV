@@ -32,5 +32,5 @@ const inicializing = async() => {
     }
 }
 
-inicializing();
+inicializing(); 
 

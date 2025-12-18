@@ -24,4 +24,4 @@ export const SchemaTask = new mongoose.Schema({
 }, {
     timestamps: true,
 })
-export const SchemaTaskMGS = mongoose.model("Tasks", SchemaTask);
+export const SchemaTaskMGS = mongoose.model("Tasks", SchemaTask); 

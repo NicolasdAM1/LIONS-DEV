@@ -13,4 +13,4 @@ export const SchemaBoard = new mongoose.Schema({
 }, {
     timestamps: true,
 })
-export const SchemaBoardMGS = mongoose.model("Boards", SchemaBoard);
+export const SchemaBoardMGS = mongoose.model("Boards", SchemaBoard); 

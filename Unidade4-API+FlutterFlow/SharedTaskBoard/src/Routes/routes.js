@@ -16,4 +16,4 @@ route.get('/dashboard', authMiddleware, (req, res) => {
 route.post('/boards', authMiddleware, createBoard);
 route.get('/boards', authMiddleware, getUserBoards);
 route.post('/tasks', authMiddleware, createTask);
-route.patch('/tasks/:taskId', authMiddleware, updateTaskStatus);
+route.patch('/tasks/:taskId', authMiddleware, updateTaskStatus); 
