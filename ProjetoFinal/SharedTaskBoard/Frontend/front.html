@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Projetos - Sir Nicolas</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .hidden { display: none; }
+        .glass { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); }
+    </style>
+</head>
+<body class="bg-slate-100 min-h-screen font-sans">
+
+    <div id="login-screen" class="flex items-center justify-center min-h-screen">
+        <div class="glass p-8 rounded-2xl shadow-xl w-full max-w-md border border-white">
+            <h1 class="text-3xl font-bold text-slate-800 mb-6 text-center">Bem-vindo, Sir Nicolas</h1>
+            <form id="login-form" class="space-y-4">
+                <div>
+                    <label class="block text-sm font-medium text-slate-600">Email</label>
+                    <input type="email" id="email" required class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <div>
+                    <label class="block text-sm font-medium text-slate-600">Senha</label>
+                    <input type="password" id="password" required class="w-full px-4 py-2 mt-1 border rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+                </div>
+                <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 rounded-lg transition duration-200">
+                    Acessar Sistema
+                </button>
+            </form>
+            <p id="login-error" class="text-red-500 text-sm mt-4 text-center hidden italic"></p>
+        </div>
+    </div>
+
+    <div id="dashboard-screen" class="hidden container mx-auto px-4 py-8">
+        <div class="flex justify-between items-center mb-8">
+            <h2 class="text-2xl font-bold text-slate-800">Seus Quadros de Projeto</h2>
+            <button onclick="logout()" class="text-sm bg-slate-200 hover:bg-slate-300 px-4 py-2 rounded-lg transition">Sair</button>
+        </div>
+
+        <div id="boards-container" class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <p class="text-slate-500 italic">Carregando seus projetos...</p>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'https://lions-dev-z2rr.onrender.com'; // Ajuste para a URL do seu servidor
+        let token = localStorage.getItem('auth_token');
+
+        // Referências de Elementos
+        const loginScreen = document.getElementById('login-screen');
+        const dashboardScreen = document.getElementById('dashboard-screen');
+        const loginForm = document.getElementById('login-form');
+        const boardsContainer = document.getElementById('boards-container');
+
+        // Inicialização: Verifica se já está logado
