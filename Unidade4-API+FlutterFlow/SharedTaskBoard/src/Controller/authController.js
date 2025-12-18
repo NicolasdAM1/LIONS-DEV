@@ -6,9 +6,9 @@ export const register = async (req, res) => {
     try {
         const { Name, Email, Password } = req.body;
         const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
+        const hashedPassword = await bcrypt.hash(Password, salt);
 
-        const newUser = await User.create({
+        const newUser = await SchemaUserMGS.create({
             Name,
             Email,
             Password: hashedPassword,
@@ -23,15 +23,15 @@ export const login = async (req, res) => {
     try {
         const { Email, Password } = req.body;
 
-        const user = await User.findOne({ Email }).select("+Password");
-        if(!user) return res.status(404).json({ error: "USer not found." });
+        const user = await SchemaUserMGS.findOne({ Email }).select("+Password");
+        if(!user) return res.status(404).json({ error: "User not found." });
 
         const isMatch = await bcrypt.compare(Password, user.Password);
         if(!isMatch) return res.status(401).json({ error: "Invalid credentials." });
 
-        const token = jwt({ id: user._ID }, process.env.JWST, { expiresIn: '6h' });
+        const token = jwt.sign({ id: user._id }, process.env.JWST, { expiresIn: '6h' });
 
-        res.json({ token, user: { id: user._ID, Name: user.Name } })
+        res.json({ token, user: { id: user._id, Name: user.Name } })
     } catch (err) {
         res.status(500).json({ error: err.message })
     }

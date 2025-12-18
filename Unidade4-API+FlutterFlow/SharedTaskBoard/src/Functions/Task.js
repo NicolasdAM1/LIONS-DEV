@@ -3,7 +3,7 @@ import { SchemaTaskMGS } from '../Models/SchemaTask.js';
 export const createTask = async (req, res) => {
     try {
         const { Description, Board_ID } = req.body;
-        const newTask = await Task.create({
+        const newTask = await SchemaTaskMGS.create({
             Description,
             Board_ID,
             User_ID: req.user.id,
@@ -20,8 +20,8 @@ export const updateTaskStatus = async (req, res) => {
         const { taskId } = req.params;
         const { Status } = req.body; 
 
-        const task = await Task.findOneAndUpdate(
-            { _ID: taskId, User_ID: req.user.id },
+        const task = await SchemaTaskMGS.findOneAndUpdate(
+            { _id: taskId, User_ID: req.user.id },
             { Status },
             { new: true }
         );

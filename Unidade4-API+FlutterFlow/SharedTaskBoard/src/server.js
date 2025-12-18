@@ -1,5 +1,4 @@
-import dotenv from 'dotenv';
-dotenv.config();
+import 'dotenv/config';
 
 import express from 'express';
 import mongoose from 'mongoose';
@@ -8,7 +7,10 @@ import { route } from './Routes/routes.js';
 const app = express();
 const port = process.env.PORT || 3000;
 
+import cors from 'cors';
+
 app.use(express.json());
+app.use(cors());
 app.use(route);
 
 const inicializing = async() => {
@@ -30,11 +32,5 @@ const inicializing = async() => {
     }
 }
 
-//inicializing();
+inicializing();
 
-const init = async() => {
-    app.listen(port, () => {
-        console.log(`Servidor iniciado na porta ${port}`)
-        })
-}
-init();
